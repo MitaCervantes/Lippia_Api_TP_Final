@@ -1,0 +1,14 @@
+{
+  "url": "{{base.url}}",
+  "headers": {
+    "X-Api-Key": "{{api-key}}",
+    "Content-Type": "application/json"
+  },
+  "body": {
+    "address": "Av siempre viva 742",
+    "email": "newclient1@email.com",
+    "name": "{{name-client}}",
+    "note": "nocthing"
+  },
+  "endpoint": "/workspaces/{{id-workspace}}/clients"
+}
