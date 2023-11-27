@@ -15,4 +15,9 @@ public class TimeEntryService extends MethodsService {
         return post(jsonName, TimeEntry.class, BaseService.setParams());
     }
 
+    public static Response put(String jsonName) {
+        return put(jsonName, TimeEntry.class, BaseService.setParams());
+    }
+
+
 }

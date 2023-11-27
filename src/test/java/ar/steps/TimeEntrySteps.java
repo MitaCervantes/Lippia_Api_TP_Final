@@ -9,28 +9,38 @@ import services.BaseService;
 public class TimeEntrySteps {
     Dotenv dotenv = Dotenv.configure().directory("src/main/resources/env").load();
 
-    @And("ingreso el userId para consultar")
-    public void ingresoElUserIdAConsultar() {
+    @And("I enter the userId")
+    public void enterTheUserId() {
         BaseService.AddParams("user_id", dotenv.get("USER_ID"));
     }
 
-    @Then("se valida que los id no sean null")
-    public void seValidaQueLosIdNoSeanNull() {
+    @Then("validate that the ids are not null")
+    public void validateIdNotNull() {
         TimeEntryValidator.verifyIdInTimesEntries();
     }
-    @And("ingreso datos en body")
-    public void ingresoDatosEnBody() {
+    @And("I enter data in body")
+    public void enterDataBody() {
         TimeEntryValidator.dataBodyTimeEntry();
     }
 
-    @Then("se valida datos correctos en time entry")
-    public void seValidaDatosCorrectosEnTimeEntry() {
+    @Then("the correct data is validated in time entry")
+    public void correctDataValidatedInTimeEntry() {
         TimeEntryValidator.verifyDataTimeEntry();
     }
 
+    @Then("I get a response object with two properties")
+    public void responseObjectWithProperties() {
+        TimeEntryValidator.verifyErrorResponse();
+    }
 
-    @Then("se obtiene un objeto response con dos propiedades")
-    public void seObtieneUnObjetoResponseConDosPropiedades() {
-        TimeEntryValidator.verifyResponse();
+    @And("I check if there is a time entry created")
+    public void checkTimeEntryCreated() {
+        TimeEntryValidator.verifyTimeEntryCreated();
+    }
+
+    @And("modify data of a time entry")
+    public void modifyTimeEntryData() {
+        TimeEntryValidator.getIdTimeEntry();
+        TimeEntryValidator.dataBodyUpdate();
     }
 }
