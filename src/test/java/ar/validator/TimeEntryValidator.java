@@ -68,4 +68,9 @@ public class TimeEntryValidator {
         BaseService.AddParams("descripcion", dotenv.get("UPDATE_DESCRIPTION"));
         BaseService.AddParams("end_time", TpUtils.horaFin());
     }
+
+    public static void setIdTimeEntry(){
+        TimeEntry response = (TimeEntry) APIManager.getLastResponse().getResponse();
+        BaseService.AddParams("time_entry_id",  response.getId());
+    }
 }

@@ -11,5 +11,8 @@ public class ErrorService extends MethodsService {
         return post(jsonName, ErrorResponse.class, BaseService.setParams());
     }
 
+    public static Response delete(String jsonName) {
+        return delete(jsonName, ErrorResponse.class, BaseService.setParams());
+    }
 
 }

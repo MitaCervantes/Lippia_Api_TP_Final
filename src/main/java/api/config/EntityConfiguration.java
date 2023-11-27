@@ -15,6 +15,12 @@ public enum EntityConfiguration {
         public Class<?> getEntityService() {
             return ErrorService.class;
         }
+    },
+    EMPTY {
+        @Override
+        public Class<?> getEntityService() {
+            return EmptyService.class;
+        }
     };
 
 

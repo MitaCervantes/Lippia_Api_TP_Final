@@ -43,4 +43,8 @@ public class TimeEntrySteps {
         TimeEntryValidator.getIdTimeEntry();
         TimeEntryValidator.dataBodyUpdate();
     }
+    @And("a timeEntryId is obtained and set to url")
+    public void aTimeEntryIdIsObtained() {
+        TimeEntryValidator.setIdTimeEntry();
+    }
 }
