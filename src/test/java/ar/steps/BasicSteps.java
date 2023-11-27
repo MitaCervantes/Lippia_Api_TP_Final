@@ -10,9 +10,8 @@ public class BasicSteps {
 
     @Given("Una cuenta registrada en clockify y X-Api-Key valida")
     public void XApiKey_Valida() {
-
         BaseService.AddParams("base.url", dotenv.get("BASE_URL"));
-        BaseService.AddParams("api_key", dotenv.get("API_KEY"));
+        BaseService.AddParams("api_key", System.getenv("API_KEY"));
     }
 
     @And("ingreso un workspaceId valido")

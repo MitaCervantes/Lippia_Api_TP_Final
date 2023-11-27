@@ -9,6 +9,12 @@ public enum EntityConfiguration {
         public Class<?> getEntityService() {
             return TimeEntryService.class;
         }
+    },
+    ERROR {
+        @Override
+        public Class<?> getEntityService() {
+            return ErrorService.class;
+        }
     };
 
 
