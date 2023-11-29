@@ -1,4 +1,4 @@
-@Smoke
+
 Feature: Time Entry
 
   Background:
@@ -6,15 +6,18 @@ Feature: Time Entry
     And a valid workspaceId is entered
 
 
-  @GetTimeEntry
+  @GetPostPutTimeEntry
   Scenario: 1.Get the time entries
     And I enter the userId
     When I perform a 'GET' to 'TIMEENTRY' endpoint with the 'getTimeEntries' and ''
     Then status code 200 is obtained
     And validate that the ids are not null
+    And a timeEntryId is obtained and set to url
+    When I perform a 'DELETE' to 'EMPTY' endpoint with the 'deleteTimeEntry' and ''
+    And status code 204 is obtained
 
 
-  @AddTimeEntry
+  @GetPostPutTimeEntry
   Scenario: 2.Add hours to project
     And I enter the userId
     And I enter data in body
@@ -25,9 +28,12 @@ Feature: Time Entry
     Then I get a response object with two properties
 
 
-  @EditTimeEntry
+  @GetPostPutTimeEntry
   Scenario: 3.Edit a field of some timestamp
     And I enter the userId
+    And I enter data in body
+    When I perform a 'POST' to 'TIMEENTRY' endpoint with the 'addTimeEntry' and ''
+    Then status code 201 is obtained
     When I perform a 'GET' to 'TIMEENTRY' endpoint with the 'getTimeEntries' and ''
     And I check if there is a time entry created
     And modify data of a time entry
@@ -39,12 +45,11 @@ Feature: Time Entry
   @DeleteTimeEntry
   Scenario: 4.Delete time entry from workspace
     And I enter the userId
-    And I enter data in body
-    When I perform a 'POST' to 'TIMEENTRY' endpoint with the 'addTimeEntry' and ''
-    Then status code 201 is obtained
-    And a timeEntryId is obtained and set to url
-    When I perform a 'DELETE' to 'EMPTY' endpoint with the 'deleteTimeEntry' and ''
-    And status code 204 is obtained
+    When I perform a 'GET' to 'TIMEENTRY' endpoint with the 'getTimeEntries' and ''
+    Then status code 200 is obtained
+    And a timeEntryIds are obtained and set to url
+    When I perform a 'DELETEALL' to 'TIMEENTRY' endpoint with the 'deleteAllTimeEntry' and ''
+    And status code 200 is obtained
     When I perform a 'DELETE' to 'ERROR' endpoint with the 'errorDeleteTimeEntry' and ''
     Then status code 405 is obtained
     And expected response is obtained in 'ERROR'

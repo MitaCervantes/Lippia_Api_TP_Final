@@ -2,9 +2,7 @@ package api.report;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-
 import com.crowdar.driver.DriverManager;
-
 import com.aventstack.extentreports.cucumber.adapter.ExtentCucumberGenericAdapter;
 
 public class CucumberReporter extends ExtentCucumberGenericAdapter {

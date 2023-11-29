@@ -8,7 +8,9 @@ import org.testng.Assert;
 import services.BaseService;
 import com.google.gson.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class TimeEntryValidator {
     static Dotenv dotenv = Dotenv.configure().directory("src/main/resources/env").load();
@@ -70,7 +72,29 @@ public class TimeEntryValidator {
     }
 
     public static void setIdTimeEntry(){
-        TimeEntry response = (TimeEntry) APIManager.getLastResponse().getResponse();
-        BaseService.AddParams("time_entry_id",  response.getId());
+        TimeEntry[] responses = (TimeEntry[]) APIManager.getLastResponse().getResponse();
+        if (responses.length > 0) {
+            TimeEntry response = responses[0];
+            BaseService.AddParams("time_entry_id", response.getId());
+        }
+    }
+
+    private static String ids;
+    public static void setIdsTimeEntry(){
+        TimeEntry[] responses = (TimeEntry[]) APIManager.getLastResponse().getResponse();
+        if (responses.length > 0) {
+            List<String> timeEntryIds = new ArrayList<>();
+            for (TimeEntry response : responses) {
+                timeEntryIds.add(response.getId());
+            }
+            String[] arrayIds = timeEntryIds.toArray(new String[0]);
+            Arrays.toString(arrayIds);
+            ids = String.join(",", arrayIds);
+            System.out.println("commaSeparatedIds = " + ids);
+            BaseService.AddParams("ids", ids);
+            System.out.println("arrayIds = " + Arrays.toString(arrayIds));
+        }
+        BaseService.AddParams("ids", ids);
+
     }
 }
