@@ -83,3 +83,6 @@ jenkins_home/.java/
 jenkins_home/userContent/
 jenkins_home/workspace/
 
+#env
+.env/*
+
